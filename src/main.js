@@ -1,17 +1,18 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
+import firebase from 'firebase/compat/app';
+import 'firebase/auth'
+import 'firebase/database'
+import 'firebase/messaging'
+import 'firebase/storage'
+
 import App from './App.vue'
 import router from './router'
 
-import { initializeApp } from 'firebase/app'
-import { getAuth } from "firebase/auth";
-import 'firebase/database'
-
 
 // Конфиг для подключение к базе данных
-
-const firebase = initializeApp({
+const db = firebase.initializeApp({
   apiKey: "AIzaSyCxUTUFhsT4GuYZzhbfutEay4D-zaIpNJw",
   authDomain: "hospital-1078b.firebaseapp.com",
   projectId: "hospital-1078b",
@@ -26,5 +27,6 @@ let app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
+app.use(db)
 
 app.mount('#app')

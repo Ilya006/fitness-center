@@ -20,41 +20,43 @@
       <router-link to="/register">ЗАРЕГИСТРИРОВАТЬСЯ!</router-link>
     </p>
 
-    <p></p>
-
   </form>
 </template>
 
 
 <script>
-import { storeToRefs } from 'pinia';
-import { useAuthStore } from '@/stores/auth';
+import { storeToRefs } from "pinia"
+import { useLoginStore } from '@/stores/login'
 
 export default {
   name: 'login',
 
-  setup() {
-    const { login } = useAuthStore()
 
-    return { login }
+  setup() {
+   // Достаем метод для логина
+    const { loginUser } = useLoginStore()
+    // Добавляем переменные из стейта для использования
+    const { user } = storeToRefs(useLoginStore())
+
+    return { loginUser, user }
   },
+
 
   data: () =>({
     email: '',
     password: ''
   }),
 
+
   methods: {
-    submitHandler() {
-      
-      const formData = {
-        email: this.email,
-        password: this.password
+    async submitHandler() {
+      try {
+        await this.loginUser(this.email, this.password)
+        // Редикерт после авторизации без ошибок на главную страницу "/"
+        this.$router.push('/')
+      } catch (error) {
+        console.log('сломалось при входе')
       }
-
-      this.login(this.email, this.password)
-
-      // this.$router.push('/')
     }
   }
 }
