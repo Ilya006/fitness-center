@@ -20,16 +20,7 @@ export const useRegisterStore = defineStore('auth', {
   
   actions: {
     // Регистрация пользователя
-    async registerUser(email, password) {
-      const auth = getAuth()
-      try {
-        const user = await createUserWithEmailAndPassword(auth, email, password)
-        
-        console.log(user)
-      } catch (error) {
-        throw error //Прокидываем ошибку выше чтобы обработать ее в register.vue
-      }
-    } 
+     
   },
 
 

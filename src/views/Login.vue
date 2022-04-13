@@ -24,9 +24,11 @@
 </template>
 
 
+
+
 <script>
 import { storeToRefs } from "pinia"
-import { useLoginStore } from '@/stores/login'
+import { useAuthStore } from '@/stores/auth'
 
 export default {
   name: 'login',
@@ -34,11 +36,11 @@ export default {
 
   setup() {
    // Достаем метод для логина
-    const { loginUser } = useLoginStore()
+    const { login } = useAuthStore()
     // Добавляем переменные из стейта для использования
-    const { user } = storeToRefs(useLoginStore())
+    // const { user } = storeToRefs(useAuthStore()) <== не забыть
 
-    return { loginUser, user }
+    return { login }
   },
 
 
@@ -51,7 +53,7 @@ export default {
   methods: {
     async submitHandler() {
       try {
-        await this.loginUser(this.email, this.password)
+        await this.login(this.email, this.password)
         // Редикерт после авторизации без ошибок на главную страницу "/"
         this.$router.push('/')
       } catch (error) {
@@ -61,6 +63,8 @@ export default {
   }
 }
 </script>
+
+
 
 
 <style>

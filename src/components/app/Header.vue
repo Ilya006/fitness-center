@@ -10,12 +10,20 @@
 
 
 <script>
+import { useAuthStore } from '@/stores/auth'
+
 export default {
   name: 'Header', 
 
+  setup() {
+    const { logout } = useAuthStore()
+
+    return { logout }
+  },
+
   methods: {
     logout() {
-      console.log('logout')
+      this.logout()
       this.$router.push('/login')
     }
   },

@@ -3,10 +3,10 @@
 
     <h2>Зарегистрироваться</h2>
 
-    <!-- <div class="input">
+    <div class="input">
       <label for="name">Имя</label>
-      <input v-model="email" id="text" type="text" placeholder="Имя" />
-    </div> -->
+      <input v-model="name" id="text" type="text" placeholder="Имя" />
+    </div>
 
     <div class="input">
       <label for="email">Почта</label>
@@ -39,23 +39,24 @@ export default {
 
   setup() {
     // Достаем метод для регистрации
-    const { registerUser } = useRegisterStore()
+    const { register } = useRegisterStore()
     // Добавляем переменные из стейта для использования
     const { user } = storeToRefs(useRegisterStore())
-    return { registerUser, user }
+    return { register, user }
   },
 
 
   data: () =>({
     email: '',
     password: '',
+    name: ''
   }),
 
 
   methods: {
     async submitHandler() {
       try {
-        await this.registerUser(this.email, this.password)
+        await this.register(this.email, this.password, this.name)
       } catch (error) {
         console.log('сломалось при рег')
       }
