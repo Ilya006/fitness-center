@@ -12,7 +12,6 @@
       <div class="content">
         <router-view/>
         <div>{{name}}</div>
-        <button @click="clickme">asfk;l'saflk;safkl</button>
       </div>
     </div>
 
@@ -39,13 +38,11 @@ export default {
 
   computed: {
     name() {
-      return this.info
-    }
-  },
-
-  methods: {
-    clickme() {
-      this.click()
+      if(this.info.name) {
+        return this.info.name
+      } else {
+        return 'Гость'
+      }
     }
   },
 

@@ -12,8 +12,9 @@ export const useInfoStore = defineStore('info', {
     async fetchInfo() {
       const userId = useAuthStore().getUid()                 // Получаем ID пользователя
       const dbRef = ref(getDatabase())
+
       const info = await get(child(dbRef, `users/${userId}/info`))
-      console.log(info.val()) 
+      this.info = info.val()
     },
 
 
