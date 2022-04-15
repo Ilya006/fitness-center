@@ -29,23 +29,19 @@
 
 
 <script>
-import { storeToRefs } from "pinia"
+import { storeToRefs } from 'pinia'
 import { useAuthStore } from '@/stores/auth'
 import codeError from '@/utils/messages'
 
 export default {
   name: 'login',
 
-
   setup() {
-   // Достаем метод для логина
-    const { login } = useAuthStore()
-    // Добавляем переменные из стейта для использования
-    // const { user } = storeToRefs(useAuthStore())            <== не забыть
+    const { login } = useAuthStore() // Достаем метод для логина
+    // const { user } = storeToRefs(useAuthStore()) // Добавляем переменные из стейта для использования
 
     return { login }
   },
-
 
   data: () =>({
     email: '',
@@ -59,7 +55,7 @@ export default {
       try {
         await this.login(this.email, this.password)
         // Редикерт после авторизации без ошибок на главную страницу "/"
-        // this.$router.push('/')
+        this.$router.push('/')
 
         this.error = null // чистим ошибки если есть
       } catch (error) {

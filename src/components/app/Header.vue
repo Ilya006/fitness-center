@@ -17,7 +17,6 @@ export default {
 
   setup() {
     const { logout } = useAuthStore()
-
     return { logout }
   },
 

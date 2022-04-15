@@ -2,10 +2,12 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
 import firebase from 'firebase/compat/app';
-import 'firebase/auth'
-import 'firebase/database'
-import 'firebase/messaging'
-import 'firebase/storage'
+import { initializeApp } from 'firebase/app';
+
+// import 'firebase/auth'
+// import 'firebase/database'
+// import 'firebase/messaging'
+// import 'firebase/storage'
 
 import App from './App.vue'
 import router from './router'

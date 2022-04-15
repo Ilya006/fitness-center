@@ -1,3 +1,7 @@
+// этот layout служит для расположения главных элементов на экране таких как header, navbar и главный контент
+
+
+
 <template>
   <div class="main">
 
@@ -7,6 +11,8 @@
       <Navbar />
       <div class="content">
         <router-view/>
+        <div>{{name}}</div>
+        <button @click="clickme">asfk;l'saflk;safkl</button>
       </div>
     </div>
 
@@ -15,12 +21,40 @@
 
 
 <script>
+import { storeToRefs } from 'pinia'
+import { useInfoStore } from '@/stores/info'
 import Header from '@/components/app/Header.vue' 
-import Navbar from '@/components/app/Navbar.vue'   
+import Navbar from '@/components/app/Navbar.vue' 
 
 export default {
   name: 'main-layout',
-  components: { Header, Navbar }
+  components: { Header, Navbar },
+
+  setup() {
+    const { fetchInfo, click } = useInfoStore() // Ф-ия для получения данных в пользователе
+    const { info } = storeToRefs(useInfoStore()) // обьект с данными
+    
+    return { fetchInfo, info, click }
+  },
+
+  computed: {
+    name() {
+      return this.info
+    }
+  },
+
+  methods: {
+    clickme() {
+      this.click()
+    }
+  },
+
+
+  mounted() {
+    this.fetchInfo()
+    console.log(this.info)
+  }
+
 }
 </script>
 
