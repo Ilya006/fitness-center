@@ -5,15 +5,17 @@
 
     <div class="input">
       <label for="email">Почта</label>
-      <input v-model="email" id="email" type="text" placeholder="Почта" />
+      <input v-model.trim="email" id="email" type="text" placeholder="Почта" />
     </div>
 
     <div class="input">
       <label for="password">Пароль</label>
-      <input v-model="password" id="password" type="password" placeholder="Пароль" />
+      <input v-model.trim="password" id="password" type="password" placeholder="Пароль" />
     </div>
 
     <button type="submit">Войти</button>
+
+    <div class="error">{{error}}</div>
 
     <p>
       Нет аккаута?
@@ -29,6 +31,7 @@
 <script>
 import { storeToRefs } from "pinia"
 import { useAuthStore } from '@/stores/auth'
+import codeError from '@/utils/messages'
 
 export default {
   name: 'login',
@@ -38,7 +41,7 @@ export default {
    // Достаем метод для логина
     const { login } = useAuthStore()
     // Добавляем переменные из стейта для использования
-    // const { user } = storeToRefs(useAuthStore()) <== не забыть
+    // const { user } = storeToRefs(useAuthStore())            <== не забыть
 
     return { login }
   },
@@ -46,7 +49,8 @@ export default {
 
   data: () =>({
     email: '',
-    password: ''
+    password: '',
+    error: null
   }),
 
 
@@ -55,9 +59,12 @@ export default {
       try {
         await this.login(this.email, this.password)
         // Редикерт после авторизации без ошибок на главную страницу "/"
-        this.$router.push('/')
+        // this.$router.push('/')
+
+        this.error = null // чистим ошибки если есть
       } catch (error) {
-        console.log('сломалось при входе')
+        console.log(error.code)
+        this.error = codeError[error.code] || 'Что-то пошло не так' // добавляем ошибку из файла messages.js
       }
     }
   }
@@ -87,5 +94,10 @@ export default {
 
   .active {
     background-color: inherit;
+  }
+
+  .error {
+    color: tomato;
+    padding: 10px;
   }
 </style>
