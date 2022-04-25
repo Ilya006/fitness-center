@@ -22,25 +22,6 @@ const router = createRouter({
       meta: {layout: 'empty'},
       component: () => import('./../views/Register.vue')
     },
-    {
-      path: '/categories',
-      name: 'categories',
-      meta: {layout: 'main'},
-      component: () => import('./../views/Categories.vue')
-    },
-    {
-      path: '/records',
-      name: 'records',
-      meta: {layout: 'main'},
-      component: () => import('./../views/Records.vue')
-    },
-    {
-      path: '/doctors',
-      name: 'doctors',
-      meta: {layout: 'main'},
-      component: () => import('./../views/Doctors.vue')
-    },
-    
   ]
 })
 

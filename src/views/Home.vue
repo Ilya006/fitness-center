@@ -1,30 +1,16 @@
-<script setup>
-</script>
-
 <template>
   <div>
-    <div>
-      hello
-    </div>
+    <Header />
+    <MainBody />
   </div>
 </template>
 
-
 <script>
-import { storeToRefs } from 'pinia';
+import Header from "../components/common/Header.vue"
+import MainBody from '../components/MainBody.vue'
 
-export default { 
-
-  setup() {
-    
-  },
-
-  methods: {
-    
-  }
-
-
-
-
+export default {
+  name: 'home',
+  components: { Header, MainBody }
 }
 </script>
