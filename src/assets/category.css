@@ -1,0 +1,27 @@
+.subcategory {
+  padding-top: 50px;
+  background-color: white;
+}
+
+.subcategory__title {
+  color: #4a4a4a;
+  font-size: 55px;
+  margin: 0;
+}
+
+.subcategory__subtitle {
+  font-size: 22px;
+  text-align: center;
+  padding-bottom: 50px;
+  border-bottom: 4px solid greenyellow;
+}
+
+.mergin-0 {
+  margin-bottom: 0;
+}
+
+.card__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

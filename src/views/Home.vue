@@ -1,16 +1,16 @@
 <template>
   <div>
-    <Header />
-    <MainBody />
+    <HeaderVue />
+    <MainBodyVue />
   </div>
 </template>
 
 <script>
-import Header from "../components/common/Header.vue"
-import MainBody from '../components/MainBody.vue'
+import HeaderVue from "../components/common/Header.vue"
+import MainBodyVue from '../components/MainBody.vue'
 
 export default {
-  name: 'home',
-  components: { Header, MainBody }
+  name: 'homePage',
+  components: { HeaderVue, MainBodyVue }
 }
 </script>

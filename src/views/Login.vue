@@ -1,7 +1,7 @@
 <template>
   <div class="form">
     <h1>Вход</h1>
-    <form @submit.prevent="onSubmitLogin">
+    <form @submit.prevent="onSubmitLogin" class="form__auth">
       <div class="input-form">
         <input type="text" placeholder="Почта" v-model="email" />
       </div>
@@ -11,10 +11,18 @@
 		  </div>
 
       <div class="input-form">
-			  <button type="submit" class="waves-effect waves-light btn">Войти</button>
+			  <button 
+          type="submit" 
+          class="waves-effect waves-light btn " 
+          :class="loading ? 'disabled' : ''"
+        >
+          Войти
+        </button>
 		  </div>
 
-      <router-link to="register" class="forget">Регистрация</router-link >
+      <strong class="error_auth">{{messageError}}</strong>
+
+      <router-link to="register" class="forget" >Регистрация</router-link >
     </form>
   </div>
 </template>
@@ -22,13 +30,40 @@
 
 
 <script>
+import errorsCode from './../utils/errorsCode'
+
 export default {
-  name: 'login',
+  name: 'loginPage',
+
+  data:() => ({
+    email: '',
+    password: ''
+  }),
+
+  computed: {
+    // Сообщение ошибки
+    messageError() {
+      const errorCode = this.$store.getters.getErrorAuth
+      return errorCode ? errorsCode[errorCode] || 'Что-то пошло не так' : ''
+    },
+    loading() {
+      return this.$store.getters.getLoading
+    },
+  },
 
   methods: {
     onSubmitLogin() {
-      console.log('login')
+      this.$store.dispatch('clearError')
+      const payload = {
+        email: this.email,
+        password: this.password
+      }
+      this.$store.dispatch('login', payload)
     }
+  },
+
+  unmounted() {
+    this.$store.dispatch('clearError')
   }
 }
 </script>

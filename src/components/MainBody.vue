@@ -26,56 +26,70 @@
       </p>
     </div>
   </div>
-  <div class="page-light">
+  
+  <div class="services">
     <div class="wrapper">
-      <div class="collection">
-        <div class="collection-item collection-man">
-          <h2 class="collection-title">Лучшие специалисты</h2>
-          <p class="collection-description">9 968 довольных клиентов</p>
-          <a href="" class="btn btn-xs"
-            ><img src="./../images/arrow.svg" alt="Arrow"
-          /></a>
+      <h3 class="services__title">Услуги Фитнес-центра</h3>
+
+      <div class="row services-margin">
+        <div class="col s6 category">
+          <router-link to="category">
+            <h3 @click="powerTraining" class="category__title">CИЛОВЫЕ ТРЕНИРОВКИ</h3>
+          </router-link>
+          <div class="category__img">
+            <img src="./../images/img-force.jpg" alt="">
+          </div>
         </div>
-        <div class="collection-item collection-woman">
-          <h2 class="collection-title">Новейшее оборудование</h2>
-          <p class="collection-description">Опыт работы</p>
-          <a href="" class="btn btn-xs"
-            ><img src="./../images/arrow.svg" alt="Arrow"
-          /></a>
+
+        <div  class="col s6 category">
+          <router-link to="category">
+            <h3 class="category__title" @click="onMiniBody">ПРОГРАММЫ MIND BODY</h3>
+          </router-link>
+          <div class="category__img">
+            <img src="./../images/img-force.jpg" alt="">
+          </div>
+        </div>
+
+        <div class="col s6 category">
+          <router-link to="category">
+            <h3 class="category__title" @click="onMixedPrograms">СМЕШАННЫЕ ПРОГРАММЫ</h3>
+          </router-link>
+          <div class="category__img">
+            <img src="./../images/img-force.jpg" alt="">
+          </div>
+        </div>
+
+        <div class="col s6 category">
+          <router-link to="category">
+            <h3 class="category__title" @click="onCardioWorkout">КАРДИО ТРЕНИРОВКИ</h3>
+          </router-link>
+          <div class="category__img">
+            <img src="./../images/img-force.jpg" alt="">
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="page">
-    <div class="wrapper">
-      <h2 class="title-h2">Основные преимущества</h2>
-      <div class="product">
-        <div class="product-item">
-          <img src="" alt="Product" />
-          <p class="product-title">Доступно</p>
-          <p class="product-price">Фитнес-центр «» — 300 метров от м.</p>
-        </div>
-        <div class="product-item">
-          <img src="" alt="Product" />
-          <p class="product-title">Профессионально</p>
-          <p class="product-price">
-            Команда из действующих спортсменов и мастеров спорта
-          </p>
-        </div>
-        <div class="product-item">
-          <img src="" alt="Product" />
-          <p class="product-title">Полезно</p>
-          <p class="product-price">Здоровые блюда и напитки в фитнес-баре</p>
-        </div>
-        <div class="product-item">
-          <img src="" alt="Product" />
-          <p class="product-title">Удобно</p>
-          <p class="product-price">8 разных зон для достижения любых целей</p>
-        </div>
-      </div>
-      <a class="btn btn-center" href=""
-        ><span>Услуги</span><img src="./../images/arrow.svg" alt="Arrow"
-      /></a>
     </div>
   </div>
 </template>
+
+
+<script>
+export default {
+  name: 'mainBody',
+
+  methods: {
+    powerTraining() {
+      this.$router.push({ name: 'category', params: { categoryName: 'PowerTraining' }})
+    },
+    onMiniBody() {
+      this.$router.push({ name: 'category', params: { categoryName: 'MiniBody' }})
+    },
+    onMixedPrograms() {
+      this.$router.push({ name: 'category', params: { categoryName: 'MixedPrograms' }})
+    },
+    onCardioWorkout() {
+      this.$router.push({ name: 'category', params: { categoryName: 'CardioWorkout' }})
+    }
+  }
+}
+</script>

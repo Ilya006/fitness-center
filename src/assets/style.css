@@ -1,8 +1,11 @@
-@import './main.css';
+@import './content.css';
 @import './auth.css';
+@import './category.css';
 
 body {
   font-family: 'Montserrat', sans-serif;
+  box-sizing: border-box;
+  color: white;
 }
 
 .page {
@@ -22,7 +25,7 @@ body {
 }
 
 .page-light-content {
-  background: linear-gradient(#ffffff, #4d4d4d);
+  background: linear-gradient(#ffffff, #dbbca4);
 }
 
 .page-dark {
@@ -30,7 +33,7 @@ body {
 }
 
 .wrapper {
-  max-width: 1110px;
+  max-width: 1150px;
   margin: 0 auto;
   padding-left: 15px;
   padding-right: 15px;
@@ -143,7 +146,6 @@ a.nubex:hover {
 }
 
 .btn {
-  background-color: #f3a62d;
   color: #fff;
   font-size: 16px;
   text-transform: uppercase;
@@ -288,7 +290,6 @@ a.nubex:hover {
 .notice {
   text-align: center;
   color: #fff;
-  padding: 64px 0 54px;
 }
 
 @media (max-width: 576px) {
@@ -301,7 +302,6 @@ a.nubex:hover {
   font-size: 30px;
   text-transform: uppercase;
   font-weight: 400;
-  width: 400px;
 }
 
 @media (max-width: 576px) {

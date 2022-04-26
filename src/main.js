@@ -1,9 +1,10 @@
 import { createApp } from 'vue'
-
+import M from 'materialize-css' 
 import firebase from 'firebase/compat/app';
+
 import App from './App.vue'
 import router from './router'
-import M from 'materialize-css' 
+import store from './stores'
 
 
 
@@ -24,5 +25,6 @@ let app = createApp(App)
 app.use(router)
 app.use(db)
 app.use(M)
+app.use(store)
 
 app.mount('#app')
