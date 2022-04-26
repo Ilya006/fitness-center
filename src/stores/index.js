@@ -1,6 +1,7 @@
 import { createStore } from 'vuex'
 
-import auth from './modules/auth'               // Авторизация
+import auth from './modules/auth'               
+import additionally from './modules/additionally'  
 
 export default createStore({
   state: {
@@ -12,5 +13,6 @@ export default createStore({
 
   modules: {
     auth,
+    additionally,
   },
 })

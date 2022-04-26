@@ -49,6 +49,9 @@ export default {
     },
     getLoading(state) {
       return state.loading
+    },
+    getIsAdmin(state) {
+      return state.userData ? !!state.userData.isAdmin : false
     }
   },
 

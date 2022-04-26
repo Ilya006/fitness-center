@@ -5,7 +5,7 @@
 body {
   font-family: 'Montserrat', sans-serif;
   box-sizing: border-box;
-  color: white;
+  color: black;
 }
 
 .page {
@@ -49,8 +49,8 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding-bottom: 26px;
-  padding-top: 46px;
+  padding-bottom: 20px;
+  padding-top: 20px;
 }
 
 @media (max-width: 500px) {
@@ -64,6 +64,31 @@ body {
     display: none;
   }
 }
+
+.header__profile {
+  position: relative;
+}
+
+.header__name {
+  font-weight: 700;
+  color: black;
+  cursor: pointer;
+}
+
+.header__name:hover + .header__btn {
+  display: block;
+  opacity: 1;
+}
+
+.header__btn {
+  display: none;
+  position: absolute;
+  bottom: -40px;
+  left: 0;
+  opacity: 0;
+}
+
+
 
 .nav {
   display: -webkit-box;

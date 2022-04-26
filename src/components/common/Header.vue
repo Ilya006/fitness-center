@@ -9,13 +9,18 @@
             <li class="nav-item"><a class="nav-link" href="">Контакты</a></li>
           </ul>
         </div>
-        <img class="header-logo" src="./../../images/logo.svg" alt="Logo" />
+        <router-link to="/">
+          <img class="header-logo" src="./../../images/logo.svg" alt="Logo" />
+        </router-link>
         <ul class="nav nav-info">
           <li class="nav-item"><a class="nav-link" href="">Цены</a></li>
           <li class="nav-item"><a class="nav-link" href="">Тренеры</a></li>
+          <li class="nav-item header__profile">
+            <div v-if="userData" class="nav-item header__name">{{userData.name}}</div>
+            <button class="waves-effect waves-light btn header__btn" @click="onLogout" v-if="userData">Выйти</button>
+          </li>
         </ul>
-        <div v-if="userData">{{userData.name}}</div>
-        <button class="waves-effect waves-light btn" @click="onLogout" v-if="userData">Выйти</button>
+        
         <router-link to="login" class="nubex" v-if="!userData">Войти</router-link>
         <div class="toggle-menu">
           <div class="line line1"></div>

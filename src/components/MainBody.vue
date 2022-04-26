@@ -26,70 +26,95 @@
       </p>
     </div>
   </div>
-  
-  <div class="services">
+
+  <Additional />
+
+  <section class="services">
     <div class="wrapper">
-      <h3 class="services__title">Услуги Фитнес-центра</h3>
+      <h3 class="services__title">УСЛУГИ</h3>
 
       <div class="row services-margin">
         <div class="col s6 category">
           <router-link to="category">
-            <h3 @click="powerTraining" class="category__title">CИЛОВЫЕ ТРЕНИРОВКИ</h3>
+            <h3 @click="powerTraining" class="category__title">
+              CИЛОВЫЕ ТРЕНИРОВКИ
+            </h3>
           </router-link>
           <div class="category__img">
-            <img src="./../images/img-force.jpg" alt="">
-          </div>
-        </div>
-
-        <div  class="col s6 category">
-          <router-link to="category">
-            <h3 class="category__title" @click="onMiniBody">ПРОГРАММЫ MIND BODY</h3>
-          </router-link>
-          <div class="category__img">
-            <img src="./../images/img-force.jpg" alt="">
+            <img src="./../images/cat1.jpg" alt="" />
           </div>
         </div>
 
         <div class="col s6 category">
           <router-link to="category">
-            <h3 class="category__title" @click="onMixedPrograms">СМЕШАННЫЕ ПРОГРАММЫ</h3>
+            <h3 class="category__title" @click="onMiniBody">
+              ПРОГРАММЫ MIND BODY
+            </h3>
           </router-link>
           <div class="category__img">
-            <img src="./../images/img-force.jpg" alt="">
+            <img src="./../images/cat2.jpg" alt="" />
           </div>
         </div>
 
         <div class="col s6 category">
           <router-link to="category">
-            <h3 class="category__title" @click="onCardioWorkout">КАРДИО ТРЕНИРОВКИ</h3>
+            <h3 class="category__title" @click="onMixedPrograms">
+              СМЕШАННЫЕ ПРОГРАММЫ
+            </h3>
           </router-link>
           <div class="category__img">
-            <img src="./../images/img-force.jpg" alt="">
+            <img src="./../images/cat3.jpg" alt="" />
+          </div>
+        </div>
+
+        <div class="col s6 category">
+          <router-link to="category">
+            <h3 class="category__title" @click="onCardioWorkout">
+              КАРДИО ТРЕНИРОВКИ
+            </h3>
+          </router-link>
+          <div class="category__img">
+            <img src="./../images/cat4.jpg" alt="" />
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 
 <script>
+import Additional from '@/components/Additional.vue'
+
 export default {
-  name: 'mainBody',
+  name: "mainBody",
+  components: { Additional },
 
   methods: {
     powerTraining() {
-      this.$router.push({ name: 'category', params: { categoryName: 'PowerTraining' }})
+      this.$router.push({
+        name: "category",
+        params: { categoryName: "PowerTraining" },
+      });
     },
     onMiniBody() {
-      this.$router.push({ name: 'category', params: { categoryName: 'MiniBody' }})
+      this.$router.push({
+        name: "category",
+        params: { categoryName: "MiniBody" },
+      });
     },
     onMixedPrograms() {
-      this.$router.push({ name: 'category', params: { categoryName: 'MixedPrograms' }})
+      this.$router.push({
+        name: "category",
+        params: { categoryName: "MixedPrograms" },
+      });
     },
     onCardioWorkout() {
-      this.$router.push({ name: 'category', params: { categoryName: 'CardioWorkout' }})
-    }
-  }
-}
+      this.$router.push({
+        name: "category",
+        params: { categoryName: "CardioWorkout" },
+      });
+    },
+  },
+};
 </script>
