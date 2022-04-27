@@ -9,6 +9,7 @@
             <div class="card-image">
               <img src="./../images/cart.png">
               <button 
+                v-if="userData"
                 class="btn-floating btn-large halfway-fab waves-effect " 
                 :class="isClubCard ? 'green lighten-1' : 'waves-light red'"
                 @click="onClubCard"
@@ -28,8 +29,9 @@
             <div class="card-image">
               <img src="./../images/closet.jpg" >
               <button 
+                v-if="userData"
                 class="btn-floating btn-large halfway-fab waves-effect waves-light red"
-                :class="isClubCard ? 'green lighten-1' : 'waves-light red'"
+                :class="isLocker ? 'green lighten-1' : 'waves-light red'"
                 @click="onLocker"
               >
                 <i class="material-icons">{{isLocker ? 'check' : 'add'}}</i>
@@ -41,9 +43,6 @@
             </div>
           </div>
         </div>
-
-        <p>{{isClubCard}}</p>
-        <p>{{isLocker}}</p>
       </div>
     </div>
   </section>
@@ -54,13 +53,14 @@ export default {
   name: "Additional",
 
   computed: {
+    userData() {
+      return this.$store.getters.getUserData
+    },
     isClubCard() {
-      const userData = this.$store.getters.getUserData
-      return userData && userData.clubCard
+      return this.userData && this.userData.clubCard
     },
     isLocker() {
-      const userData = this.$store.getters.getUserData
-      return userData && userData.locker
+      return this.userData && this.userData.locker
     }
   },
 
