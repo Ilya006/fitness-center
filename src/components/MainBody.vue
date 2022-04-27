@@ -29,7 +29,7 @@
 
   <Additional />
 
-  <section class="services">
+  <section class="services" id="services">
     <div class="wrapper">
       <h3 class="services__title">УСЛУГИ</h3>
 

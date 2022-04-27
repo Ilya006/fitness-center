@@ -12,6 +12,7 @@
         <Card />
         <Card />
         <Card />
+        
         <AdminCard v-if="isAdmin"/>
 
       </div>
@@ -41,13 +42,6 @@ export default {
 
   mounted() {
     this.urlName = this.$route.params.categoryName;
-    console.log(this.urlName);
   },
-
-  watch: {
-    isAdmin() {
-      console.log(this.isAdmin)
-    }
-  }
 };
 </script>

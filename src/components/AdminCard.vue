@@ -13,8 +13,9 @@
         <div class="input-field card-title">
           <input
             type="text"
+            required
             class="grey-text text-lighten-3"
-            :class="title && 'validate'"
+            :class="!title && 'invalid'"
             placeholder="Заголовок"
             v-model="title"
           />
@@ -22,9 +23,10 @@
         <div class="input-field card-title">
           <input
             type="text"
+            required
             class="grey-text text-lighten-3"
             placeholder="Описания"
-            :class="description && 'validate'"
+            :class="!description && 'invalid'"
             v-model="description"
           />
         </div>
@@ -71,6 +73,7 @@ export default {
   data: () => ({
     title: '',
     description: '',
+    touched: false,
     toggleEdit: false
   }),
 
@@ -86,6 +89,9 @@ export default {
     onAddNewCategory() {
       console.log(this.title)
       console.log(this.description)
+    },
+    isTouched() {
+      this.touched = this.touched
     }
   }
 };

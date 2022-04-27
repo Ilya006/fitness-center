@@ -67,7 +67,6 @@ export default {
   methods: {
     // Добавить карту 
     onClubCard() {
-      console.log(2222)
       this.$store.dispatch('clubCard', !this.isClubCard)
     },
     // Добавить шкафчик

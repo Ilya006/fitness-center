@@ -5,7 +5,6 @@ export default {
   actions: {
     // Добавить клубную крату
     async clubCard(ctx, isCard) {
-      console.log(isCard)
       const db = getDatabase()
       const userId = getAuth().currentUser.uid
       const userRef = ref(db, `users/${userId}/data`)
