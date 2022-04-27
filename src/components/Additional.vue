@@ -5,14 +5,15 @@
 
       <div class="row">
         <div class="col s6 card__wrap">
-          <div class="card card__bg">
+          <div class="card card__bg services__box">
             <div class="card-image">
               <img src="./../images/cart.png">
               <button 
-                class="btn-floating btn-large halfway-fab waves-effect waves-light red" 
+                class="btn-floating btn-large halfway-fab waves-effect " 
+                :class="isClubCard ? 'green lighten-1' : 'waves-light red'"
                 @click="onClubCard"
               >
-                <i class="material-icons">add</i>
+                <i class="material-icons">{{isClubCard ? 'check' : 'add'}}</i>
               </button>
             </div>
             <div class="card-content">
@@ -23,14 +24,15 @@
         </div>
 
         <div class="col s6 card__wrap">
-          <div class="card card__bg">
+          <div class="card card__bg services__box">
             <div class="card-image">
               <img src="./../images/closet.jpg" >
               <button 
                 class="btn-floating btn-large halfway-fab waves-effect waves-light red"
+                :class="isClubCard ? 'green lighten-1' : 'waves-light red'"
                 @click="onLocker"
               >
-                <i class="material-icons">add</i>
+                <i class="material-icons">{{isLocker ? 'check' : 'add'}}</i>
               </button>
             </div>
             <div class="card-content">
@@ -41,6 +43,7 @@
         </div>
 
         <p>{{isClubCard}}</p>
+        <p>{{isLocker}}</p>
       </div>
     </div>
   </section>
