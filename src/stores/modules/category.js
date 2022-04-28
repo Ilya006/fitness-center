@@ -36,7 +36,6 @@ export default {
       const db = getDatabase()
       const ctgRef = ref(db, `category/${subcategory}/list/${title}`)
       await update(ctgRef, {title, description})
-      console.log('add')
     },
 
     // Данные о категориях
@@ -63,12 +62,11 @@ export default {
         await remove(removeWorkoutRef)
         return
       }
-
+      
       const updateWorkout = {}
       updateWorkout[subcategory] = true
 
       await update(workoutRef, updateWorkout)
-      console.log('add')
     },
 
     // Получить информацию о всех категориях 
@@ -87,7 +85,17 @@ export default {
       const recordRef = ref(db, `users/${userId}/workout/${nameCat}/${nameSubcat}`)
 
       await remove(recordRef)
-      console.log('re move')
+    },
+
+    // Отменить аренду админом
+    async adminRemoveRentCard(ctx, {userId, thing}) {
+      const db = getDatabase()
+      const rentRef = ref(db, `adminPanel/${thing}/${userId}`)
+      const rentUserRef = ref(db, `users/${userId}/data/${thing}`)
+
+      await remove(rentRef)
+      await remove(rentUserRef)
+      console.log('remove admin')
     }
   }
 }

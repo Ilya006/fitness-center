@@ -44,12 +44,5 @@ export default {
   mounted() {
     this.$store.dispatch('fetchInfoCategorys', this.recordId)
   },
-
-  watch: {
-    dataCatRecord() {
-      console.log(this.$store.getters.getDataCatRecord)
-    }
-  }
-
 }
 </script>

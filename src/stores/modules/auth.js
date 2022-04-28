@@ -79,6 +79,7 @@ export default {
       try {
         const auth = getAuth()
         await signOut(auth)
+        console.log('nulll')
         commit('setUserData', null)
       } 
       catch(error) { commit('setErrorCode', error.code) }
@@ -93,7 +94,7 @@ export default {
         await createUserWithEmailAndPassword(auth, email, password)
         const userId = auth.currentUser.uid
         // Добавить имя
-        set(ref(db, `users/${userId}`), {
+        set(ref(db, `users/${userId}/data`), {
           name
         })
         router.push('/')
