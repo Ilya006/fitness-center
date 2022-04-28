@@ -16,7 +16,7 @@
           <li class="nav-item"><a class="nav-link" href="#">Цены</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Тренеры</a></li>
           <li class="nav-item header__profile">
-            <div v-if="userData" class="nav-item header__name">{{userData.name}}</div>
+            <router-link to="profile" v-if="userData" class="nav-item header__name">{{userData.name}}</router-link>
             <button class="waves-effect waves-light btn header__btn" @click="onLogout" v-if="userData">Выйти</button>
           </li>
         </ul>
