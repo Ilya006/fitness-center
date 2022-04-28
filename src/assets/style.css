@@ -2,6 +2,7 @@
 @import './auth.css';
 @import './category.css';
 @import './profile.css';
+@import './search.css';
 
 body {
   font-family: 'Montserrat', sans-serif;
@@ -423,13 +424,6 @@ a.nubex:hover {
     background-size: 153px 130px;
     background-position: 100% bottom;
   }
-}
-
-.collection-man {
-
-}
-
-.collection-woman {
 }
 
 .collection-title {

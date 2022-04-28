@@ -5,7 +5,9 @@
         <div>
           <ul class="nav">
             <li class="nav-item"><a class="nav-link" href="#services">Услуги</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">О нас</a></li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="search">Поиск</router-link>
+            </li>
             <li class="nav-item"><a class="nav-link" href="#">Контакты</a></li>
           </ul>
         </div>
