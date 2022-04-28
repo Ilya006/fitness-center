@@ -40,6 +40,8 @@
 
 .card-image img {
   max-height: 300px;
+  border-radius: 22px !important;
+  overflow: hidden;
 }
 
 .services__box {

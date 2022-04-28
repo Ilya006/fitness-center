@@ -1,16 +1,18 @@
 <template>
-  <div class="page page-light page-light-content">
-    <div class="wrapper">
-      <div class="main">
-        <div class="main-item sale">
-          <p class="sale-description">Фитнес-центр в Москве</p>
-          <h1 class="sale-title">СКИДКИ ДО 30%</h1>
-          <a class="btn" href="">Подробнее</a>
-        </div>
-        <div class="main-item box">
-          <div class="box-price">
-            <strike class="box-price-old">30 000 ₽</strike>
-            <p class="box-price-new">21 000 ₽</p>
+    <div class=" page-light page-light-content">
+      <div class="main__bg page">
+      <div class="wrapper">
+        <div class="main">
+          <div class="main-item sale">
+            <p class="sale-description">Фитнес-центр в Москве</p>
+            <h1 class="sale-title">СКИДКИ ДО 30%</h1>
+            <a class="btn" href="">Подробнее</a>
+          </div>
+          <div class="main-item box">
+            <div class="box-price">
+              <strike class="box-price-old">30 000 ₽</strike>
+              <p class="box-price-new">21 000 ₽</p>
+            </div>
           </div>
         </div>
       </div>

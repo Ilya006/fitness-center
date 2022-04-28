@@ -1,6 +1,6 @@
 <template>
   <div class="col s6" >
-    <div class="card blue-grey darken-1">
+    <div class="card blue-grey darken-1" v-if="dataCatRecord">
       <div class="card-content white-text">
         <span class="card-title">{{dataCatRecord && dataCatRecord.title}}</span>
         <p>{{dataCatRecord && dataCatRecord.description}}</p>
