@@ -13,12 +13,11 @@
           <img class="header-logo" src="./../../images/logo.svg" alt="Logo" />
         </router-link>
         <ul class="nav nav-info">
-          <li class="nav-item"><a class="nav-link" href="#">Цены</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Тренеры</a></li>
-          <li class="nav-item header__profile">
-            <router-link to="profile" v-if="userData" class="nav-item header__name">{{userData.name}}</router-link>
-            <button class="waves-effect waves-light btn header__btn" @click="onLogout" v-if="userData">Выйти</button>
+          <li class="nav-item nav__link">
+            <router-link class="nav-item" to="profile" v-if="userData">Профиль</router-link>
           </li>
+          <li v-if="userData" class="nav-item header__name">{{userData.name}}</li>
+          <li class="nubex nubex__li nav-item" v-if="userData" @click="onLogout">Выйти</li>
         </ul>
         
         <router-link to="login" class="nubex" v-if="!userData">Войти</router-link>

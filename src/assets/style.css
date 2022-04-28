@@ -142,6 +142,23 @@ body {
   -ms-transition: position 2.9s;
   -o-transition: position 2.9s;
 }
+
+.nubex__li {
+  color: #000000;
+  user-select: none; 
+  text-decoration: none;
+  outline: none; 
+  background-color: #ffffff; 
+  cursor: pointer;
+}
+.nubex__li:hover {
+  background-color: #70d1f4; /* Цвет кнопки при наведении курсора */
+}
+
+.nav-item {
+  color: #000000;
+}
+
 a.nubex {
   color: #000000;
   user-select: none; /* Убираем текстовое выделение */
