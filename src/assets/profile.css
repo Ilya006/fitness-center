@@ -1,0 +1,63 @@
+.profile {
+  background: url('../images/bg-category.jpg') no-repeat center;
+  background-size: cover;
+  min-height: 100vh;
+  padding: 40px 0;
+}
+
+.profile h3 {
+  color: white;
+}
+
+.profile h5 {
+  margin: 0;
+  font-weight: 700;
+}
+
+.workout {
+  padding: 20px 10px;
+  background-color: #f3dcc1;
+  box-shadow: 0px 4px 15px 8px #222020;
+}
+
+.chapter__item {
+  padding-top: 20px !important;
+  position: relative;
+  border: 1px solid rgb(156, 156, 156);
+  border-radius: 10px;
+  box-shadow: 0px 4px 5px 0px #acacac;
+}
+.chapter__item h4 {
+  position: absolute;
+  top: -17px;
+  margin: 0;
+  margin-left: 20px;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 5px;
+  background-color: #f3dcc1;
+}
+
+.card-action-flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.profle__record {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 5px;
+  border-radius: 10px;
+}
+.profle__record:hover {
+  background-color: #688286;
+}
+.profle__record:hover span  {
+  color: gold;
+}
+
+.profle__record span {
+  color: white;
+  font-size: 18px;
+} 

@@ -1,8 +1,9 @@
-import { getDatabase, onValue, ref, remove, update } from "@firebase/database"
+import { getDatabase, onValue, ref, remove, update, get } from "@firebase/database"
 
 export default {
   state: {
-    dataCategoty: null
+    dataCategoty: null,
+    dataCategotyRecord: {}
   },
 
   mutations: {
@@ -11,6 +12,12 @@ export default {
     },
     clearDataCaregory(state) {
       state.dataCategoty = null
+    },
+    setInfoCatAll(state, {data, ctgName}) {
+      state.dataCategotyRecord = {
+        ...state.dataCategotyRecord,
+        [ctgName]: data
+      }
     }
   },
 
@@ -18,21 +25,24 @@ export default {
     getDataCategory(state) {
       return state.dataCategoty
     },
-
+    getDataCatRecord(state) {
+      return state.dataCategotyRecord
+    }
   },
 
   actions: {
     // Создать подкатегорию админом
     async createNewSubcategory({ commit }, { subcategory, title, description }) {
       const db = getDatabase()
-      const ctgRef = ref(db, `caterofy/${subcategory}/list/${title}`)
+      const ctgRef = ref(db, `category/${subcategory}/list/${title}`)
       await update(ctgRef, {title, description})
       console.log('add')
     },
+
     // Данные о категориях
     fetchDataCategory({ commit }, nameCtg) {
       const db = getDatabase()
-      const ctgRef = ref(db, `caterofy/${nameCtg}`)
+      const ctgRef = ref(db, `category/${nameCtg}`)
 
       onValue(ctgRef, (snapshot) => {
         const data = snapshot.val()
@@ -40,7 +50,7 @@ export default {
       })
     },
 
-    //Добавить или удалить свою тренировку
+    //Добавить или отменить свою тренировку
     async workout({ rootState },{ category, subcategory, isWorkout }) {
       const db = getDatabase()
       const userId = rootState.auth.userId
@@ -59,6 +69,25 @@ export default {
 
       await update(workoutRef, updateWorkout)
       console.log('add')
+    },
+
+    // Получить информацию о всех категориях 
+    async fetchInfoCategorys({commit}, ctgName) {
+      const db = getDatabase()
+      const catRef = ref(db, `category/${ctgName}`)
+
+      const data = await get(catRef)
+      commit('setInfoCatAll', {data: data.val(), ctgName})
+    },
+
+    // Отменить запись
+    async removeRecord({ rootState }, { nameCat, nameSubcat }) {
+      const db = getDatabase()
+      const userId = rootState.auth.userId
+      const recordRef = ref(db, `users/${userId}/workout/${nameCat}/${nameSubcat}`)
+
+      await remove(recordRef)
+      console.log('re move')
     }
   }
 }

@@ -52,6 +52,9 @@ export default {
     },
     getIsAdmin(state) {
       return state.userData ? !!state.userData.data.isAdmin : false
+    },
+    getUserWorkout(state) {
+      return state.userData && state.userData.workout && state.userData.workout
     }
   },
 

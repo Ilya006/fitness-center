@@ -52,11 +52,6 @@ export default {
     subCategory() {
       return this.dataCategory && this.dataCategory.list
     },
-    // workoutUser() {
-    //   const userWork = this.userData && this.$store.getters.getUserData.workout
-    //   // ***********************************
-    //   return userWork && Object.keys(userWork) 
-    // }
   },
 
   mounted() {
@@ -67,11 +62,5 @@ export default {
   unmounted() {
     this.$store.commit('clearDataCaregory')
   },
-
-  watch: {
-    workoutUser() {
-      console.log(this.workoutUser)
-    }
-  }
 };
 </script>

@@ -1,6 +1,7 @@
 @import './content.css';
 @import './auth.css';
 @import './category.css';
+@import './profile.css';
 
 body {
   font-family: 'Montserrat', sans-serif;

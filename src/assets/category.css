@@ -3,6 +3,7 @@
   background-color: white;
   background: url('./../images/bg-category.jpg') center;
   background-size: cover;
+  min-height: 100vh;
 }
 
 .subcategory__title {
