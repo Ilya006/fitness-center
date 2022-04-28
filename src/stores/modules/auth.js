@@ -11,7 +11,7 @@ export default {
     userId: null,
     userData: null,
     errorAuth: null,
-    loading: false
+    loading: true
   },
 
   mutations: {
@@ -51,7 +51,7 @@ export default {
       return state.loading
     },
     getIsAdmin(state) {
-      return state.userData ? !!state.userData.isAdmin : false
+      return state.userData ? !!state.userData.data.isAdmin : false
     }
   },
 
@@ -90,7 +90,7 @@ export default {
         await createUserWithEmailAndPassword(auth, email, password)
         const userId = auth.currentUser.uid
         // Добавить имя
-        set(ref(db, `users/${userId}/data`), {
+        set(ref(db, `users/${userId}`), {
           name
         })
         router.push('/')
@@ -104,7 +104,7 @@ export default {
     // Получить информацию о пользователе
     async fetchInfo({commit}, userId) {
       const db = getDatabase()
-      const profileRef = ref(db, `users/${userId}/data`)
+      const profileRef = ref(db, `users/${userId}`)
       try {
         onValue(profileRef, (snapshot) => { 
           const data = snapshot.val()

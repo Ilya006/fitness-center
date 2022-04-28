@@ -11,6 +11,7 @@
           v-for="(subCar, id) in subCategory"
           :key="id"
           :subCar="subCar"
+          :category="urlName"
         />
         
         <AdminCard 
@@ -43,14 +44,19 @@ export default {
       return this.$store.getters.getIsAdmin
     },
     userData() {
-      return this.$store.getters.getUserData
+      return this.$store.getters.getUserData && this.$store.getters.getUserData.data
     },
     dataCategory() {
       return this.$store.getters.getDataCategory
     },
     subCategory() {
       return this.dataCategory && this.dataCategory.list
-    }
+    },
+    // workoutUser() {
+    //   const userWork = this.userData && this.$store.getters.getUserData.workout
+    //   // ***********************************
+    //   return userWork && Object.keys(userWork) 
+    // }
   },
 
   mounted() {
@@ -61,5 +67,11 @@ export default {
   unmounted() {
     this.$store.commit('clearDataCaregory')
   },
+
+  watch: {
+    workoutUser() {
+      console.log(this.workoutUser)
+    }
+  }
 };
 </script>

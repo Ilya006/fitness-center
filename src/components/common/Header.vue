@@ -38,7 +38,7 @@ export default {
   name: 'headerComponent',
   computed: {
     userData() {
-      return this.$store.getters.getUserData
+      return this.$store.getters.getUserData && this.$store.getters.getUserData.data
     }
   },
 
@@ -47,7 +47,5 @@ export default {
       this.$store.dispatch('logout')
     }
   },
-
-  
 }
 </script>

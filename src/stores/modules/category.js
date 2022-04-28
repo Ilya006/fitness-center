@@ -1,4 +1,4 @@
-import { getDatabase, onValue, ref, update } from "@firebase/database"
+import { getDatabase, onValue, ref, remove, update } from "@firebase/database"
 
 export default {
   state: {
@@ -22,7 +22,7 @@ export default {
   },
 
   actions: {
-    // Создать подкатегорию
+    // Создать подкатегорию админом
     async createNewSubcategory({ commit }, { subcategory, title, description }) {
       const db = getDatabase()
       const ctgRef = ref(db, `caterofy/${subcategory}/list/${title}`)
@@ -39,5 +39,26 @@ export default {
         commit('setCatData', data)
       })
     },
+
+    //Добавить или удалить свою тренировку
+    async workout({ rootState },{ category, subcategory, isWorkout }) {
+      const db = getDatabase()
+      const userId = rootState.auth.userId
+      const workoutRef = ref(db, `users/${userId}/workout/${category}`)
+
+      //*******************************************/
+      if(!isWorkout) {
+        const removeWorkoutRef = ref(db, `users/${userId}/workout/${category}/${subcategory}`)
+
+        await remove(removeWorkoutRef)
+        return
+      }
+
+      const updateWorkout = {}
+      updateWorkout[subcategory] = true
+
+      await update(workoutRef, updateWorkout)
+      console.log('add')
+    }
   }
 }

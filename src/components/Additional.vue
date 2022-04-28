@@ -54,7 +54,7 @@ export default {
 
   computed: {
     userData() {
-      return this.$store.getters.getUserData
+      return this.$store.getters.getUserData && this.$store.getters.getUserData.data
     },
     isClubCard() {
       return this.userData && this.userData.clubCard

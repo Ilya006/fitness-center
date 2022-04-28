@@ -6,9 +6,13 @@
         <p>{{subCar.description}}</p>
       </div>
       <div class="card-action">
-        <a class="btn-floating teal lighten-2">
-          <i class="material-icons">add</i>
-        </a>
+        <button 
+          class="btn-floating waves-effect" 
+          :class="isAddWorkout ? 'green lighten-1' : 'waves-light red'"
+          @click="onAddWorkout"
+        >
+          <i class="material-icons">{{isAddWorkout ? 'check' : 'add'}}</i>
+        </button>
       </div>
     </div>
   </div>
@@ -19,6 +23,25 @@
 <script>
 export default {
   name: 'cardCategoryComp',
-  props: ['subCar']
+  props: ['subCar', 'category'],
+
+  computed: {
+    isAddWorkout() {
+      const userData = this.$store.getters.getUserData
+      const userWorkout = userData && userData.workout && userData.workout[this.category]
+      const arrWorkout = userWorkout && Object.keys(userWorkout)
+      return arrWorkout && arrWorkout.includes(this.subCar.title)
+    }
+  },
+
+  methods: {
+    onAddWorkout() {
+      this.$store.dispatch('workout', {
+        category: this.category, 
+        subcategory: this.subCar.title, 
+        isWorkout: !this.isAddWorkout
+      })
+    }
+  },
 }
 </script>
