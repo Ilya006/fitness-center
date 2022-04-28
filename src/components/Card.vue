@@ -2,12 +2,8 @@
   <div class="col s4">
     <div class="card grey lighten-2">
       <div class="card-content grey-text text-darken-3">
-        <span class="card-title">Card Title</span>
-        <p>
-          I am a very simple card. I am good at containing small bits of
-          information. I am convenient because I require little markup to use
-          effectively.
-        </p>
+        <span class="card-title">{{subCar.title}}</span>
+        <p>{{subCar.description}}</p>
       </div>
       <div class="card-action">
         <a class="btn-floating teal lighten-2">
@@ -17,3 +13,12 @@
     </div>
   </div>
 </template>
+
+
+
+<script>
+export default {
+  name: 'cardCategoryComp',
+  props: ['subCar']
+}
+</script>

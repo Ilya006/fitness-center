@@ -2,7 +2,7 @@
   <div class="col s4">
     <div class="card blue-grey darken-1">
       <div class="card-content grey-text text-lighten-3" v-if="!toggleEdit">
-        <span class="card-title">Андрей</span>
+        <span class="card-title">{{userName}}!</span>
         <p>
           Вы являетесь администратором сайта! Вы можете добавить новые категории
           тренировок
@@ -69,11 +69,11 @@
 <script>
 export default {
   name: "CardCategory",
+  props: ['userName', 'urlName'],
 
   data: () => ({
     title: '',
     description: '',
-    touched: false,
     toggleEdit: false
   }),
 
@@ -87,12 +87,20 @@ export default {
       this.description = ''
     },
     onAddNewCategory() {
-      console.log(this.title)
-      console.log(this.description)
+      if(this.title && this.description) {
+        const payload = {
+          subcategory: this.urlName,
+          title: this.title,
+          description: this.description
+        }
+        this.$store.dispatch('createNewSubcategory', payload)
+        this.toggleEdit = false
+      }
     },
-    isTouched() {
-      this.touched = this.touched
-    }
-  }
+  },
+
+  mounted() {
+    console.log(this.urlName)
+  },
 };
 </script>

@@ -32,47 +32,39 @@
   <section class="services" id="services">
     <div class="wrapper">
       <h3 class="services__title">УСЛУГИ</h3>
-
       <div class="row services-margin">
+        
         <div class="col s6 category">
-          <router-link to="category">
-            <h3 @click="powerTraining" class="category__title">
-              CИЛОВЫЕ ТРЕНИРОВКИ
-            </h3>
-          </router-link>
+          <h3 @click="onPowerTraining" class="category__title">
+            CИЛОВЫЕ ТРЕНИРОВКИ
+          </h3>
           <div class="category__img">
             <img src="./../images/cat1.jpg" alt="" />
           </div>
         </div>
 
         <div class="col s6 category">
-          <router-link to="category">
-            <h3 class="category__title" @click="onMiniBody">
-              ПРОГРАММЫ MIND BODY
-            </h3>
-          </router-link>
+          <h3 class="category__title" @click="onMiniBody">
+            ПРОГРАММЫ MIND BODY
+          </h3>
           <div class="category__img">
             <img src="./../images/cat2.jpg" alt="" />
           </div>
         </div>
 
         <div class="col s6 category">
-          <router-link to="category">
-            <h3 class="category__title" @click="onMixedPrograms">
-              СМЕШАННЫЕ ПРОГРАММЫ
-            </h3>
-          </router-link>
+          <h3 class="category__title" @click="onMixedPrograms">
+            СМЕШАННЫЕ ПРОГРАММЫ
+          </h3>
           <div class="category__img">
             <img src="./../images/cat3.jpg" alt="" />
           </div>
         </div>
 
         <div class="col s6 category">
-          <router-link to="category">
-            <h3 class="category__title" @click="onCardioWorkout">
-              КАРДИО ТРЕНИРОВКИ
-            </h3>
-          </router-link>
+          <h3 class="category__title" @click="onCardioWorkout">
+            КАРДИО ТРЕНИРОВКИ
+          </h3>
           <div class="category__img">
             <img src="./../images/cat4.jpg" alt="" />
           </div>
@@ -91,29 +83,17 @@ export default {
   components: { Additional },
 
   methods: {
-    powerTraining() {
-      this.$router.push({
-        name: "category",
-        params: { categoryName: "PowerTraining" },
-      });
+    onPowerTraining() {
+      this.$router.push({ path: 'category', query: { 'sub': 'powerTraining' }})
     },
     onMiniBody() {
-      this.$router.push({
-        name: "category",
-        params: { categoryName: "MiniBody" },
-      });
+      this.$router.push({ path: 'category', query: { 'sub': 'miniBody' }})
     },
     onMixedPrograms() {
-      this.$router.push({
-        name: "category",
-        params: { categoryName: "MixedPrograms" },
-      });
+      this.$router.push({ path: 'category', query: { 'sub': 'mixedPrograms' }})
     },
     onCardioWorkout() {
-      this.$router.push({
-        name: "category",
-        params: { categoryName: "CardioWorkout" },
-      });
+      this.$router.push({ path: 'category', query: { 'sub': 'cardioWorkout' }})
     },
   },
 };

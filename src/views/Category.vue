@@ -1,20 +1,24 @@
 <template>
   <HeaderVue />
+
   <div class="subcategory">
     <div class="wrapper">
-      <h3 class="subcategory__title services__title">CИЛОВЫЕ ТРЕНИРОВКИ</h3>
-      <h4 class="subcategory__subtitle">
-        Базовые упражнения и занятия на тренажерах для работы с основными
-        группами мышц
-      </h4>
+      <h3 class="subcategory__title services__title">{{dataCategory && dataCategory.title}}</h3>
+      <h4 class="subcategory__subtitle">{{dataCategory && dataCategory.description}}</h4>
       <div class="row">
 
-        <Card />
-        <Card />
-        <Card />
+        <Card 
+          v-for="(subCar, id) in subCategory"
+          :key="id"
+          :subCar="subCar"
+        />
         
-        <AdminCard v-if="isAdmin"/>
-
+        <AdminCard 
+          v-if="isAdmin"
+          :userName="userData && userData.name"
+          :urlName="urlName"
+        />
+      
       </div>
     </div>
   </div>
@@ -37,11 +41,25 @@ export default {
   computed: {
     isAdmin() {
       return this.$store.getters.getIsAdmin
+    },
+    userData() {
+      return this.$store.getters.getUserData
+    },
+    dataCategory() {
+      return this.$store.getters.getDataCategory
+    },
+    subCategory() {
+      return this.dataCategory && this.dataCategory.list
     }
   },
 
   mounted() {
-    this.urlName = this.$route.params.categoryName;
+    this.urlName = this.$route.query.sub
+    this.$store.dispatch('fetchDataCategory', this.urlName)
+  },
+
+  unmounted() {
+    this.$store.commit('clearDataCaregory')
   },
 };
 </script>
