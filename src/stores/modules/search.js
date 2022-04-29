@@ -2,18 +2,25 @@ import { getDatabase, onValue, ref, remove, update } from "@firebase/database"
 
 export default {
   state: {
-    searchHistory: null
+    searchHistory: null,
+    services: null
   },
 
   mutations: {
     setSearchHistory(state, data) {
       state.searchHistory = data && Object.keys(data)
+    },
+    setServices(state, data) {
+      state.services = data && Object.values(data).filter(cat => cat.list)
     }
   },  
 
   getters: {
     getSearchHistory(state) {
       return state.searchHistory
+    },
+    getServices(state) {
+      return state.services
     }
   },
 
@@ -36,6 +43,16 @@ export default {
       onValue(searchRef, (snapshot) => {
         const data = snapshot.val() 
         commit('setSearchHistory', data)
+      })
+    },
+
+    async fetchServices({commit}) {
+      const db = getDatabase()
+      const servicesRef = ref(db, 'category')
+
+      onValue(servicesRef, (snapshot) => {
+        const data = snapshot.val()
+        commit('setServices', data)
       })
     },
   }

@@ -58,6 +58,7 @@ export default {
 
   data: () => ({
     search: "",
+    resauld: null,
     focused: false
   }),
 
@@ -66,7 +67,7 @@ export default {
       return this.$store.getters.getSearchHistory
     },
     services() {
-      
+      return this.$store.getters.getServices
     }
   },
 
@@ -75,7 +76,8 @@ export default {
       if (this.search) {
         this.$store.dispatch("saveSearchHistory", this.search);
         
-
+        this.resauld = this.services && this.services.filter(cat => cat.list.title.incledes(this.search))
+        console.log(this.resauld)
       }
       this.focused = false
     },
@@ -88,11 +90,16 @@ export default {
 
   mounted() {
     this.$store.dispatch('fetchSearchHistory')
+    this.$store.dispatch('fetchServices')
   },
 
   watch: {
-    searchHistory() {
-      console.log(this.searchHistory)
+    // searchHistory() {
+    //   console.log(this.searchHistory)
+    // },
+    services() {
+      console.log(this.services)
+      console.log(222)
     }
   }
 };
