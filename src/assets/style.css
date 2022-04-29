@@ -64,6 +64,16 @@ body {
   padding-top: 20px;
 }
 
+.header-logo {
+  color: #000000;
+  font-size: 20px;
+  padding: 10px;
+  font-weight: 700;
+
+  background: linear-gradient(217deg, rgb(255 162 162 / 80%), rgb(222 32 32 / 0%) 70.71%), linear-gradient(127deg, rgb(110 244 110 / 80%), rgba(0,255,0,0) 70.71%), linear-gradient(336deg, rgb(28 28 242 / 80%), rgba(0,0,255,0) 70.71%);
+  box-shadow: 0px 2px 12px 3px #ffd9d9;
+}
+
 @media (max-width: 500px) {
   .header-logo {
     max-width: 130px;

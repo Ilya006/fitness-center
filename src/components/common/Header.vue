@@ -12,7 +12,7 @@
           </ul>
         </div>
         <router-link to="/">
-          <img class="header-logo" src="./../../images/logo.svg" alt="Logo" />
+          <div class="header-logo">Active Live</div>
         </router-link>
         <ul class="nav nav-info">
           <li class="nav-item nav__link">

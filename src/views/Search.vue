@@ -64,6 +64,9 @@ export default {
   computed: {
     searchHistory() {
       return this.$store.getters.getSearchHistory
+    },
+    services() {
+      
     }
   },
 
@@ -71,12 +74,15 @@ export default {
     onSearch() {
       if (this.search) {
         this.$store.dispatch("saveSearchHistory", this.search);
+        
+
       }
       this.focused = false
     },
     onHistory(event) {
       this.focused = false
       this.search = event.target.innerText
+      this.onSearch()
     }
   },
 
