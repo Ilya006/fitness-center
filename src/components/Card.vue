@@ -22,7 +22,7 @@
 
 <script>
 export default {
-  name: 'cardCategoryComp',
+  name: 'cardCategoryCompKey',
   props: ['subCar', 'category'],
 
   computed: {
@@ -43,5 +43,9 @@ export default {
       })
     }
   },
+
+  mounted() {
+    console.log(this.subCar)
+  }
 }
 </script>

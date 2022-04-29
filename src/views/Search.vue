@@ -9,7 +9,9 @@
         <div class="row">
           <div class="col s6 offset-s3">
             <div class="row">
-              <label for="autocomplete-input" class="label">Введите название услуги</label>
+              <label for="autocomplete-input" class="label"
+                >Введите название услуги</label
+              >
               <div class="input-field col s12">
                 <input
                   type="text"
@@ -31,20 +33,39 @@
         <div class="col s6 offset-s3 history">
           <div class="row row__mr">
             <div class="col s12 history__title">Предыдущие запросы</div>
-            <div 
+            <div
               v-for="item in searchHistory"
               :key="item"
-              class="col s12 history__item" 
+              class="col s12 history__item"
               @click="onHistory"
             >
-              {{item}}
+              {{ item }}
             </div>
-          
           </div>
         </div>
       </div>
 
-      <button @click="onClick">Clickme</button>
+      <div class="row" v-if="searchingResults">
+        <div class="col s4">
+          <div class="card grey lighten-2">
+            <div class="card-content grey-text text-darken-3">
+              <span class="card-title">{{searchingResults.title}}</span>
+              <p>{{searchingResults.description}}</p>
+            </div>
+            <div class="card-action">
+              <button
+                class="btn-floating waves-effect"
+                :class="isAddWorkout ? 'green lighten-1' : 'waves-light red'"
+                @click="onAddWorkout"
+              >
+                <i class="material-icons">{{
+                  isAddWorkout ? "check" : "add"
+                }}</i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
     </div>
@@ -60,46 +81,71 @@ export default {
 
   data: () => ({
     search: "",
-    focused: false
+    focused: false,
   }),
 
   computed: {
     searchHistory() {
-      return this.$store.getters.getSearchHistory
+      return this.$store.getters.getSearchHistory;
     },
     searchingResults() {
-      return this.$store.getters.getSearchingResults
-    }
+      const data = this.$store.getters.getSearchingResults
+      return data && data[this.search]
+    },
+    subCat() {
+      return {
+        title: "кардио",
+        description: "Лучшая тренировка в мире",
+      };
+    },
+    isAddWorkout() {
+      const userData = this.$store.getters.getUserData
+      const userWorkout = userData 
+        && userData.workout 
+        && this.searchingResults
+        && userData.workout[this.searchingResults.category]
+      const arrWorkout = userWorkout && Object.keys(userWorkout)
+
+      return arrWorkout && arrWorkout.includes(this.searchingResults.title)
+    },
+
   },
 
   methods: {
     onSearch() {
       if (this.search) {
         this.$store.dispatch("saveSearchHistory", this.search);
-        this.$store.dispatch('searchServices', this.search)
+        this.$store.dispatch("searchServices", this.search);
       }
-      this.focused = false
+      this.focused = false;
     },
 
     onHistory(event) {
-      this.focused = false
-      this.search = event.target.innerText
-      this.onSearch()
+      this.focused = false;
+      this.search = event.target.innerText;
+      this.onSearch();
     },
 
-    onClick() {
-      this.$store.dispatch('onClick')
+    onAddWorkout() {
+      this.$store.dispatch('workout', {
+        category: this.searchingResults.category, 
+        subcategory: this.searchingResults.title, 
+        isWorkout: !this.isAddWorkout
+      })
     }
   },
 
   watch: {
     searchingResults() {
-      console.log(this.searchingResults)
+      console.log(this.searchingResults);
+    },
+    isAddWorkout() {
+      console.log(this.isAddWorkout)
     }
   },
 
   mounted() {
-    this.$store.dispatch('fetchSearchHistory')
+    this.$store.dispatch("fetchSearchHistory");
   },
 };
 </script>

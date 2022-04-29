@@ -38,7 +38,7 @@ export default {
       const allCtgRef = ref(db, `category/subCatAll/${title}`)
 
       await update(ctgRef, {title, description})
-      await update(allCtgRef, {title, description})
+      await update(allCtgRef, {title, description, category: subcategory})
     },
 
     // Данные о категориях
