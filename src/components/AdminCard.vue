@@ -82,6 +82,8 @@ export default {
   methods: {
     openEdit() {
       this.toggleEdit = true
+      this.title = ''
+      this.description = ''
     },
     cancelAdding() {
       this.toggleEdit = false
@@ -96,6 +98,8 @@ export default {
           description: this.description
         }
         this.$store.dispatch('createNewSubcategory', payload)
+
+
         this.toggleEdit = false
       }
     },
