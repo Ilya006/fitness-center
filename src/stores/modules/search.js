@@ -56,7 +56,6 @@ export default {
       if(removeRecord) {
         const recordRef = ref(db, `users/${userId}/searchHistory/${removeRecord}`)
         remove(recordRef)
-        console.log('remove')
       }
     },
     // Получить историю поиска

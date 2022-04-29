@@ -71,12 +71,16 @@ export default {
     // Все арендованные карты и шкавчики
     async fetchAllRent({commit}) {
       const db = getDatabase()
-      const rentRef = ref(db, 'adminPanel')
+      const clubCardRef = ref(db, 'adminPanel/clubCard')
+      const lockerRef = ref(db, 'adminPanel/locker')
 
-      onValue(rentRef, (snapshot) => {
+      onValue(clubCardRef, (snapshot) => {
         const data = snapshot.val()
-        commit('setAllRentCard', data && data.clubCard)
-        commit('setAllRentLocker', data && data.locker)
+        commit('setAllRentCard', data)
+      })
+      onValue(lockerRef, (snapshot) => {
+        const data = snapshot.val()
+        commit('setAllRentLocker', data)
       })
     }
 

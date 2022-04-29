@@ -150,12 +150,6 @@ export default {
     }
   },
 
-  watch: {
-    searchingResults() {
-      console.log(this.searchingResults);
-    },
-  },
-
   mounted() {
     this.$store.dispatch("fetchSearchHistory");
   },
