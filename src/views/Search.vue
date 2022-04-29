@@ -27,13 +27,19 @@
         </div>
       </div>
 
-      <div class="row" v-if="focused">
+      <div class="row" v-if="focused && searchHistory">
         <div class="col s6 offset-s3 history">
           <div class="row row__mr">
             <div class="col s12 history__title">Предыдущие запросы</div>
-            <div class="col s12 history__item" @click="onHistory">ывава</div>
-            <div class="col s12 history__item" @click="onHistory">ывавsdfа</div>
-            <div class="col s12 history__item" @click="onHistory">sdfsdf</div>
+            <div 
+              v-for="item in searchHistory"
+              :key="item"
+              class="col s12 history__item" 
+              @click="onHistory"
+            >
+              {{item}}
+            </div>
+          
           </div>
         </div>
       </div>
@@ -55,6 +61,12 @@ export default {
     focused: false
   }),
 
+  computed: {
+    searchHistory() {
+      return this.$store.getters.getSearchHistory
+    }
+  },
+
   methods: {
     onSearch() {
       if (this.search) {
@@ -67,5 +79,15 @@ export default {
       this.search = event.target.innerText
     }
   },
+
+  mounted() {
+    this.$store.dispatch('fetchSearchHistory')
+  },
+
+  watch: {
+    searchHistory() {
+      console.log(this.searchHistory)
+    }
+  }
 };
 </script>
