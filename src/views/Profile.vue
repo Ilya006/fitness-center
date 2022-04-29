@@ -4,6 +4,7 @@
   <div class="profile">
     <div class="container">
       <h3 class="services__title">Все мои записи</h3>
+      <p class="profile__info" v-if="!userWorkout">У вас нет записей</p>
       <div class="row">
         <RecordVue
           v-for="(record, id) in userWorkout"
@@ -13,7 +14,7 @@
         />
       </div>
 
-      <div class="profile__admin" v-if="isAdmin">
+      <div class="profile__admin" v-if="isAdmin && (allRentCard || allRentLocker)">
         <h3 class="services__title">Аренда</h3>
         <div class="row">
 
@@ -112,10 +113,6 @@ export default {
   watch: {
     isAdmin() {
       this.$store.dispatch("fetchAllRent");
-    },
-
-    allRentCard() {
-      console.log(this.allRentCard);
     },
   },
 };

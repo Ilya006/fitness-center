@@ -85,3 +85,14 @@
   opacity: 0.8;
   font-weight: normal;
 }
+
+.profile__info {
+  color: white;
+  opacity: 0.8;
+  font-size: 16px;
+  text-align: center;
+}
+
+.profile__admin {
+  margin-top: 100px;
+}

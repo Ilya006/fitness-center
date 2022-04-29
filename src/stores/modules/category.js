@@ -35,7 +35,10 @@ export default {
     async createNewSubcategory({ commit }, { subcategory, title, description }) {
       const db = getDatabase()
       const ctgRef = ref(db, `category/${subcategory}/list/${title}`)
+      const allCtgRef = ref(db, `category/subCatAll/${title}`)
+
       await update(ctgRef, {title, description})
+      await update(allCtgRef, {title, description, category: subcategory})
     },
 
     // Данные о категориях
@@ -90,12 +93,12 @@ export default {
     // Отменить аренду админом
     async adminRemoveRentCard(ctx, {userId, thing}) {
       const db = getDatabase()
+      
       const rentRef = ref(db, `adminPanel/${thing}/${userId}`)
       const rentUserRef = ref(db, `users/${userId}/data/${thing}`)
 
       await remove(rentRef)
       await remove(rentUserRef)
-      console.log('remove admin')
     }
   }
 }

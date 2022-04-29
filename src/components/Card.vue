@@ -22,7 +22,7 @@
 
 <script>
 export default {
-  name: 'cardCategoryComp',
+  name: 'cardCategoryCompKey',
   props: ['subCar', 'category'],
 
   computed: {

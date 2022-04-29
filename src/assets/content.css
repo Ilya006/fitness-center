@@ -30,6 +30,7 @@
   background: #494947;
   border-bottom: 3px solid #bace03;
   height: 100px;
+  cursor: pointer;
 }
 .category__title:hover {
   background: #323232;
