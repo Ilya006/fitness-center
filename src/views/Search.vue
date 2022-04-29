@@ -44,6 +44,8 @@
         </div>
       </div>
 
+      <button @click="onClick">Clickme</button>
+
 
     </div>
   </div>
@@ -65,8 +67,8 @@ export default {
     searchHistory() {
       return this.$store.getters.getSearchHistory
     },
-    services() {
-      
+    searchingResults() {
+      return this.$store.getters.getSearchingResults
     }
   },
 
@@ -74,26 +76,30 @@ export default {
     onSearch() {
       if (this.search) {
         this.$store.dispatch("saveSearchHistory", this.search);
-        
-
+        this.$store.dispatch('searchServices', this.search)
       }
       this.focused = false
     },
+
     onHistory(event) {
       this.focused = false
       this.search = event.target.innerText
       this.onSearch()
+    },
+
+    onClick() {
+      this.$store.dispatch('onClick')
+    }
+  },
+
+  watch: {
+    searchingResults() {
+      console.log(this.searchingResults)
     }
   },
 
   mounted() {
     this.$store.dispatch('fetchSearchHistory')
   },
-
-  watch: {
-    searchHistory() {
-      console.log(this.searchHistory)
-    }
-  }
 };
 </script>

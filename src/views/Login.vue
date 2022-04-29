@@ -62,18 +62,8 @@ export default {
     }
   },
 
-  mounted() {
-    console.log(this.loading)
-  },
-
   unmounted() {
     this.$store.dispatch('clearError')
   },
-
-  watch: {
-    loading() {
-      console.log(this.loading)
-    }
-  }
 }
 </script>

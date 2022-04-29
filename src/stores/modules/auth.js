@@ -79,7 +79,6 @@ export default {
       try {
         const auth = getAuth()
         await signOut(auth)
-        console.log('nulll')
         commit('setUserData', null)
       } 
       catch(error) { commit('setErrorCode', error.code) }

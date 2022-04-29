@@ -114,10 +114,6 @@ export default {
     isAdmin() {
       this.$store.dispatch("fetchAllRent");
     },
-
-    allRentCard() {
-      console.log(this.allRentCard);
-    },
   },
 };
 </script>

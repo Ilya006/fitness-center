@@ -1,23 +1,31 @@
-import { getDatabase, onValue, query, ref, remove, update } from "@firebase/database"
+import { endAt, endBefore, equalTo, get, getDatabase, onValue, orderByChild, query, ref, remove, startAfter, startAt, update } from "@firebase/database"
 
 export default {
   state: {
-    searchHistory: null
+    searchHistory: null,
+    searchingResults: null
   },
 
   mutations: {
     setSearchHistory(state, data) {
       state.searchHistory = data && Object.keys(data)
+    },
+    setSearchingResults(state, data) {
+      state.searchingResults = data ? data : 'Ничего не найдено'
     }
   },  
 
   getters: {
     getSearchHistory(state) {
       return state.searchHistory
+    },
+    getSearchingResults(state) {
+      return state.searchingResults
     }
   },
 
   actions: {
+    // Сохранить историю поиска
     async saveSearchHistory({rootState}, dataSearch) {
       const db = getDatabase()
       const userId = rootState.auth.userId
@@ -27,7 +35,7 @@ export default {
       updateHistory[dataSearch] = true
       await update(searchRef, updateHistory)
     },
-
+    // Получить историю поиска
     fetchSearchHistory({rootState, commit}) {
       const db = getDatabase()
       const userId = rootState.auth.userId
@@ -38,10 +46,21 @@ export default {
         commit('setSearchHistory', data)
       })
     },
-
-    searchЫervices({commit}, search) {
+    // Найти совпадения 
+    async searchServices({commit}, search) {
       const db = getDatabase()
-      const que = query(ref(db, 'category'))
+      const que = query(ref(db, 'category/subCatAll'), orderByChild('title'), equalTo(search))
+      const data = await get(que)
+
+      commit('setSearchingResults', data.val())
+    },
+    // тест
+    async onClick({commit, rootState}) {
+      const db = getDatabase()
+      const que = query(ref(db, 'category/subCatAll'), orderByChild('title'), startAt('сила'))
+
+      const data = await get(que)
+      setSearchingResults(data.val())
     }
   }
 }
