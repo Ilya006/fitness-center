@@ -77,13 +77,5 @@ export default {
 
       commit('setSearchingResults', data.val())
     },
-    // тест
-    async onClick({commit, rootState}) {
-      const db = getDatabase()
-      const que = query(ref(db, 'category/subCatAll'), orderByChild('title'), startAt('сила'))
-
-      const data = await get(que)
-      setSearchingResults(data.val())
-    }
   }
 }
