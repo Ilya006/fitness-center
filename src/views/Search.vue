@@ -86,22 +86,13 @@ export default {
 
   data: () => ({
     search: "",
-<<<<<<< HEAD
-    resauld: null,
-    focused: false
-=======
     focused: false,
->>>>>>> mybase
   }),
 
   computed: {
     searchHistory() {
       return this.$store.getters.getSearchHistory;
     },
-<<<<<<< HEAD
-    services() {
-      return this.$store.getters.getServices
-=======
     searchingResults() {
       const data = this.$store.getters.getSearchingResults
       return data && data[this.search]
@@ -124,7 +115,6 @@ export default {
     },
     isEmpty() {
       return this.$store.getters.getIsEmpty
->>>>>>> mybase
     }
 
   },
@@ -133,13 +123,7 @@ export default {
     onSearch() {
       if (this.search) {
         this.$store.dispatch("saveSearchHistory", this.search);
-<<<<<<< HEAD
-        
-        this.resauld = this.services && this.services.filter(cat => cat.list.title.incledes(this.search))
-        console.log(this.resauld)
-=======
         this.$store.dispatch("searchServices", this.search);
->>>>>>> mybase
       }
       this.focused = false;
       this.$store.commit('clearRedults')
@@ -167,23 +151,7 @@ export default {
   },
 
   mounted() {
-<<<<<<< HEAD
-    this.$store.dispatch('fetchSearchHistory')
-    this.$store.dispatch('fetchServices')
-  },
-
-  watch: {
-    // searchHistory() {
-    //   console.log(this.searchHistory)
-    // },
-    services() {
-      console.log(this.services)
-      console.log(222)
-    }
-  }
-=======
     this.$store.dispatch("fetchSearchHistory");
   },
->>>>>>> mybase
 };
 </script>

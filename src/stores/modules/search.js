@@ -3,23 +3,12 @@ import {  equalTo, get, getDatabase, onValue, orderByChild, query, ref, remove, 
 export default {
   state: {
     searchHistory: null,
-<<<<<<< HEAD
-    services: null
-=======
     searchingResults: null,
     isEmpty: false
->>>>>>> mybase
   },
 
   mutations: {
     setSearchHistory(state, data) {
-<<<<<<< HEAD
-      state.searchHistory = data && Object.keys(data)
-    },
-    setServices(state, data) {
-      state.services = data && Object.values(data).filter(cat => cat.list)
-    }
-=======
       state.searchHistory = data && Object
         .keys(data)
         .map(date => [date, data[date]])
@@ -32,23 +21,17 @@ export default {
       state.searchingResults = null
       state.isEmpty = false
     },
->>>>>>> mybase
   },  
 
   getters: {
     getSearchHistory(state) {
       return state.searchHistory
     },
-<<<<<<< HEAD
-    getServices(state) {
-      return state.services
-=======
     getSearchingResults(state) {
       return state.searchingResults
     },
     getIsEmpty(state) {
       return state.isEmpty
->>>>>>> mybase
     }
   },
 
@@ -86,18 +69,6 @@ export default {
         commit('setSearchHistory', data)
       })
     },
-<<<<<<< HEAD
-
-    async fetchServices({commit}) {
-      const db = getDatabase()
-      const servicesRef = ref(db, 'category')
-
-      onValue(servicesRef, (snapshot) => {
-        const data = snapshot.val()
-        commit('setServices', data)
-      })
-    },
-=======
     // Найти совпадения 
     async searchServices({commit}, search) {
       const db = getDatabase()
@@ -114,6 +85,5 @@ export default {
       const data = await get(que)
       setSearchingResults(data.val())
     }
->>>>>>> mybase
   }
 }
