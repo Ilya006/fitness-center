@@ -1,18 +1,26 @@
-import { endAt, endBefore, equalTo, get, getDatabase, onValue, orderByChild, query, ref, remove, startAfter, startAt, update } from "@firebase/database"
+import {  equalTo, get, getDatabase, onValue, orderByChild, query, ref, remove, startAt, update } from "@firebase/database"
 
 export default {
   state: {
     searchHistory: null,
-    searchingResults: null
+    searchingResults: null,
+    isEmpty: false
   },
 
   mutations: {
     setSearchHistory(state, data) {
-      state.searchHistory = data && Object.keys(data)
+      state.searchHistory = data && Object
+        .keys(data)
+        .map(date => [date, data[date]])
+        .reverse()
     },
     setSearchingResults(state, data) {
-      state.searchingResults = data ? data : 'Ничего не найдено'
-    }
+      state.searchingResults = data ? data : state.isEmpty = true
+    },
+    clearRedults(state) {
+      state.searchingResults = null
+      state.isEmpty = false
+    },
   },  
 
   getters: {
@@ -21,6 +29,9 @@ export default {
     },
     getSearchingResults(state) {
       return state.searchingResults
+    },
+    getIsEmpty(state) {
+      return state.isEmpty
     }
   },
 
@@ -29,11 +40,24 @@ export default {
     async saveSearchHistory({rootState}, dataSearch) {
       const db = getDatabase()
       const userId = rootState.auth.userId
+      const date = new Date()
       const searchRef = ref(db, `users/${userId}/searchHistory`)
 
+      const dateDay = date.toISOString().split('T')[0]
+      const time = date.toLocaleTimeString()
+
       const updateHistory = {}
-      updateHistory[dataSearch] = true
+      updateHistory[`${dateDay} ${time}`] = dataSearch
       await update(searchRef, updateHistory)
+
+      // Очистка истории в БД
+      const history = rootState.search.searchHistory
+      const removeRecord = history.length > 5 && history[5][0]
+      if(removeRecord) {
+        const recordRef = ref(db, `users/${userId}/searchHistory/${removeRecord}`)
+        remove(recordRef)
+        console.log('remove')
+      }
     },
     // Получить историю поиска
     fetchSearchHistory({rootState, commit}) {

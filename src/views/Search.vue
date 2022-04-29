@@ -2,7 +2,7 @@
   <HeaderVue />
 
   <div class="search">
-    <div class="wrapper">
+    <div class="wrapper search__pos">
       <h3 class="services__title">Поиск услуг</h3>
 
       <div class="search__input">
@@ -18,7 +18,9 @@
                   id="autocomplete-input"
                   class="autocomplete"
                   v-model="search"
+                  autocomplete="off"
                   @focus="focused = true"
+                  @blur="isTimeClose"
                 />
                 <i class="material-icons prefix search__icon" @click="onSearch"
                   >search</i
@@ -27,25 +29,28 @@
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="row" v-if="focused && searchHistory">
-        <div class="col s6 offset-s3 history">
-          <div class="row row__mr">
-            <div class="col s12 history__title">Предыдущие запросы</div>
-            <div
-              v-for="item in searchHistory"
-              :key="item"
-              class="col s12 history__item"
-              @click="onHistory"
-            >
-              {{ item }}
+
+        <div class=" search__history" v-if="focused && searchHistory">
+          <div class="chistory">
+            <div class="chistory__wrap">
+              <div class="history__title">Предыдущие запросы</div>
+              <div
+                v-for="item in searchHistory"
+                :key="item[0]"
+                class="history__item"
+                @click="onHistory"
+              >
+                {{ item[1] }}
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="row" v-if="searchingResults">
+      <div class="search__info" v-if="isEmpty">Ничего не найдено</div>
+
+      <div class="row" v-if="searchingResults && !isEmpty">
         <div class="col s4">
           <div class="card grey lighten-2">
             <div class="card-content grey-text text-darken-3">
@@ -108,6 +113,9 @@ export default {
 
       return arrWorkout && arrWorkout.includes(this.searchingResults.title)
     },
+    isEmpty() {
+      return this.$store.getters.getIsEmpty
+    }
 
   },
 
@@ -118,6 +126,7 @@ export default {
         this.$store.dispatch("searchServices", this.search);
       }
       this.focused = false;
+      this.$store.commit('clearRedults')
     },
 
     onHistory(event) {
@@ -132,6 +141,12 @@ export default {
         subcategory: this.searchingResults.title, 
         isWorkout: !this.isAddWorkout
       })
+    },
+
+    isTimeClose() {
+      setTimeout(() => {
+        this.focused = false
+      }, 200);
     }
   },
 
@@ -139,9 +154,6 @@ export default {
     searchingResults() {
       console.log(this.searchingResults);
     },
-    isAddWorkout() {
-      console.log(this.isAddWorkout)
-    }
   },
 
   mounted() {
