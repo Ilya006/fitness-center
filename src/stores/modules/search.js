@@ -1,4 +1,4 @@
-import { getDatabase, onValue, ref, remove, update } from "@firebase/database"
+import { getDatabase, onValue, query, ref, remove, update } from "@firebase/database"
 
 export default {
   state: {
@@ -38,5 +38,10 @@ export default {
         commit('setSearchHistory', data)
       })
     },
+
+    searchЫervices({commit}, search) {
+      const db = getDatabase()
+      const que = query(ref(db, 'category'))
+    }
   }
 }

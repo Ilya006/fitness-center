@@ -75,8 +75,8 @@ export default {
 
       onValue(rentRef, (snapshot) => {
         const data = snapshot.val()
-        commit('setAllRentCard', data.clubCard && data.clubCard)
-        commit('setAllRentLocker', data.locker && data.locker)
+        commit('setAllRentCard', data && data.clubCard)
+        commit('setAllRentLocker', data && data.locker)
       })
     }
 

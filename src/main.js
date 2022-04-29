@@ -10,13 +10,13 @@ import store from './stores'
 
 // Конфиг для подключение к базе данных
 const db = firebase.initializeApp({
-  apiKey: "AIzaSyAtv0i9z8lpRapLGz-lqQc4G30paXP7Y-Y",
-  authDomain: "fitnesclub-650af.firebaseapp.com",
-  projectId: "fitnesclub-650af",
-  storageBucket: "fitnesclub-650af.appspot.com",
-  messagingSenderId: "157524901896",
-  appId: "1:157524901896:web:53edcd8c6d348fb21c51bd",
-  measurementId: "G-F2T92Z63CD"
+  apiKey: "AIzaSyCVfkUq147MWgdv7yfOPgG0u3nguyInIow",
+  authDomain: "fitnesclub-bfe0b.firebaseapp.com",
+  projectId: "fitnesclub-bfe0b",
+  storageBucket: "fitnesclub-bfe0b.appspot.com",
+  messagingSenderId: "204703007619",
+  appId: "1:204703007619:web:265bccbb3da0b7a9c22cb6",
+  measurementId: "G-KNQLR3C3FN"
 })
 
 
