@@ -11,7 +11,7 @@ export default {
     userId: null,
     userData: null,
     errorAuth: null,
-    loading: true
+    loading: false
   },
 
   mutations: {
