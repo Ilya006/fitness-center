@@ -7,6 +7,10 @@
       <h4 class="subcategory__subtitle">{{dataCategory && dataCategory.description}}</h4>
       <div class="row">
 
+        <div v-if="!userData" class="col s12 card__info">
+          Для записи на тренировку <router-link to="login"> АВТОРИЗУЙТЕСЬ!</router-link>
+        </div>
+
         <Card 
           v-for="(subCar, id) in subCategory"
           :key="id"
@@ -18,10 +22,13 @@
           v-if="isAdmin"
           :userName="userData && userData.name"
           :urlName="urlName"
+          :setShow="setShow"
         />
       
       </div>
     </div>
+
+    <div class="cat__msg" :class="isShowMsg ? 'cat__msg--visible' : ''">Новая тренировка добавлена!</div>
   </div>
 </template>
 
@@ -36,7 +43,8 @@ export default {
 
   data: () => ({
     urlName: null,
-    toggleEdit: false
+    toggleEdit: false,
+    isShowMsg: false
   }),
 
   computed: {
@@ -54,6 +62,13 @@ export default {
     },
   },
 
+  methods: {
+    setShow() {
+      console.log('add')
+      this.isShowMsg = true
+    }
+  },
+
   mounted() {
     this.urlName = this.$route.query.sub
     this.$store.dispatch('fetchDataCategory', this.urlName)
@@ -62,5 +77,15 @@ export default {
   unmounted() {
     this.$store.commit('clearDataCaregory')
   },
+
+  watch: {
+    isShowMsg() {
+      if(this.isShowMsg) {
+        setTimeout(() => {
+          this.isShowMsg = false
+        }, 3000);
+      }
+    }
+  }
 };
 </script>

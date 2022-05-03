@@ -7,6 +7,7 @@
       </div>
       <div class="card-action">
         <button 
+          v-if="userData" 
           class="btn-floating waves-effect" 
           :class="isAddWorkout ? 'green lighten-1' : 'waves-light red'"
           @click="onAddWorkout"
@@ -31,7 +32,10 @@ export default {
       const userWorkout = userData && userData.workout && userData.workout[this.category]
       const arrWorkout = userWorkout && Object.keys(userWorkout)
       return arrWorkout && arrWorkout.includes(this.subCar.title)
-    }
+    },
+    userData() {
+      return this.$store.getters.getUserData && this.$store.getters.getUserData.data
+    },
   },
 
   methods: {
@@ -39,9 +43,15 @@ export default {
       this.$store.dispatch('workout', {
         category: this.category, 
         subcategory: this.subCar.title, 
-        isWorkout: !this.isAddWorkout
+        isWorkout: !this.isAddWorkout,
       })
     }
   },
+
+  watch: {
+    userData() {
+      console.log(this.userData)
+    }
+  }
 }
 </script>

@@ -71,7 +71,7 @@
 <script>
 export default {
   name: "CardCategory",
-  props: ['userName', 'urlName'],
+  props: ['userName', 'urlName', 'setShow'],
 
   data: () => ({
     title: '',
@@ -95,7 +95,8 @@ export default {
         const payload = {
           subcategory: this.urlName,
           title: this.title,
-          description: this.description
+          description: this.description,
+          setShow: this.setShow
         }
         this.$store.dispatch('createNewSubcategory', payload)
 

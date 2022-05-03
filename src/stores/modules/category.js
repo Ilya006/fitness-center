@@ -32,13 +32,14 @@ export default {
 
   actions: {
     // Создать подкатегорию админом
-    async createNewSubcategory({ commit }, { subcategory, title, description }) {
+    async createNewSubcategory({ commit }, { subcategory, title, description, setShow }) {
       const db = getDatabase()
       const ctgRef = ref(db, `category/${subcategory}/list/${title}`)
       const allCtgRef = ref(db, `category/subCatAll/${title}`)
 
       await update(ctgRef, {title, description})
       await update(allCtgRef, {title, description, category: subcategory})
+      setShow()
     },
 
     // Данные о категориях

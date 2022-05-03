@@ -48,3 +48,27 @@
   border-radius: 22px;
   overflow: hidden;
 }
+
+.card__info {
+  padding: 15px !important;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 700;
+  background-color: #a4ffdd;
+}
+
+.cat__msg {
+  position: fixed;
+  top: 100px;
+  right: -100%;
+  padding: 20px;
+  color: black;
+  border-radius: 15px;
+  font-weight: 700;
+  background-color: #62c004;
+  transition: all 0.4s ease-in-out;
+}
+
+.cat__msg--visible {
+  right: 3%;
+}
